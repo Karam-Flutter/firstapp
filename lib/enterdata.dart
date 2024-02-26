@@ -83,7 +83,7 @@ class _EnterDataState extends State<EnterData> {
                 );
               },
               child: Text(
-                "Submit",
+                "Submit Data",
                 style: TextStyle(color: Colors.white),
               ),
             ),
