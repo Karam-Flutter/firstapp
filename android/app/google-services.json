@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1039976153966",
+    "project_id": "kztest-30cb8",
+    "storage_bucket": "kztest-30cb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039976153966:android:e301684f0c8a339fb4b77f",
+        "android_client_info": {
+          "package_name": "com.example.firstapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFyCQEWeCr3XLr2BS07vzcDCLZAhnhXdw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
