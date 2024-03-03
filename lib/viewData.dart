@@ -23,6 +23,16 @@ class _ViewDataState extends State<ViewData> {
     });
   }
 
+  deletnote(int index) async {
+    await FirebaseFirestore.instance
+        .collection('colletion')
+        .doc(data[index].id)
+        .delete();
+    setState(() {
+      data.removeAt(index);
+    });
+  }
+
   @override
   void initState() {
     getData();
@@ -49,55 +59,56 @@ class _ViewDataState extends State<ViewData> {
                 itemBuilder: (context, index) {
                   return Center(
                     child: Container(
+                      padding: EdgeInsets.all(10),
                       margin: EdgeInsets.all(5),
                       width: 120,
                       // height: 50,
                       decoration: BoxDecoration(
-                        color: Colors.purple[900],
+                        color: Color.fromARGB(255, 152, 206, 28),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: InkWell(
-                        onLongPress: () async {
-                          await FirebaseFirestore.instance
-                              .collection('colletion')
-                              .doc(data[index].id)
-                              .delete();
-                          setState(
-                            () {
-                              data.removeAt(index);
-                            },
-                          );
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            children: [
+                              Center(
+                                child: Text(
+                                  data[index]['full_name'],
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: Text(
+                                  data[index]['notecontent'],
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                deletnote(index);
+                              });
 
-                          Get.snackbar(
-                            "Deleted",
-                            "Data Deleted",
-                            snackPosition: SnackPosition.TOP,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            Center(
-                              child: Text(
-                                data[index]['full_name'],
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                            Center(
-                              child: Text(
-                                data[index]['notecontent'],
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                              Get.snackbar(
+                                "Deleted",
+                                "Data Deleted",
+                                snackPosition: SnackPosition.TOP,
+                                backgroundColor: Colors.red,
+                                colorText: Colors.white,
+                              );
+                            },
+                            icon: Icon(Icons.delete, color: Colors.white),
+                          ),
+                        ],
                       ),
                     ),
                   );
